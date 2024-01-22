@@ -54,8 +54,6 @@ while True:
     if status_list[0] == 1 and status_list[1] == 0:
         email_thread = Thread(target=send_mail, args=(image_with_obj, ))
         email_thread.daemon = True
-        clean_thread = Thread(target=clean_folder)
-        clean_thread.daemon = True
 
         email_thread.start()
 
@@ -67,4 +65,5 @@ while True:
         break
 
 video.release()
-clean_thread.start()
+time.sleep(10)
+clean_folder()
