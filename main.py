@@ -1,6 +1,7 @@
 import cv2
 import time
 from emailing import send_mail
+import glob
 
 video = cv2.VideoCapture(0)
 time.sleep(1)
@@ -49,7 +50,7 @@ while True:
 
     # check for sending out mail
     if status_list[0] == 1 and status_list[1] == 0:
-        send_mail()
+        send_mail(image_with_obj)
 
     cv2.imshow("Video", frame)
 
