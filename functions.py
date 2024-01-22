@@ -3,10 +3,12 @@ import smtplib
 from email.message import EmailMessage
 from datetime import datetime
 import imghdr
+import glob
 
 PASSWORD = os.environ.get("PASSWORD_GMAIL")
 SENDER = "alexlerch76@gmail.com"
 RECEIVER = "alexlerch76@gmail.com"
+
 
 def send_mail(image_path):
     email_message = EmailMessage()
@@ -24,6 +26,13 @@ def send_mail(image_path):
     gmail.login(SENDER, PASSWORD)
     gmail.sendmail(SENDER, RECEIVER, email_message.as_string())
     gmail.quit()
+
+
+def clean_folder():
+    images = glob.glob("images/*.png")
+    for image in images:
+        os.remove(image)
+
 
 if __name__ == "__main__":
     send_mail(image_path="images/19.png")
